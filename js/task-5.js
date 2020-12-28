@@ -19,7 +19,7 @@ class Car {
    */
   constructor({ maxSpeed, price }) {
     this.speed = 0;
-    this.price = price;
+    this._price = price;
     this.maxSpeed = maxSpeed;
     this.isOn = false;
     this.distance = 0;
@@ -38,11 +38,11 @@ class Car {
    * Добавь геттер и сеттер для свойства price,
    * который будет работать с свойством цены автомобиля.
    */
-  get prise() {
-    return this.price;
+  get price() {
+    return this._price;
   }
-  set prise(prise) {
-    this.price = prise;
+  set price(value) {
+    this._price = value;
   }
   /*
    * Добавь код для того чтобы завести автомобиль
@@ -69,12 +69,10 @@ class Car {
    * не больше чем значение свойства maxSpeed
    */
   accelerate(value) {
-    let newspeed;
-    newspeed = this.speed + value;
+    let newspeed = this.speed + value;
     if (newspeed < this.maxSpeed) {
       this.speed = newspeed;
     }
-    return this.speed;
   }
 
   /*
@@ -82,12 +80,10 @@ class Car {
    * при условии что результирующая скорость не меньше нуля
    */
   decelerate(value) {
-    let newspeed;
-    newspeed = this.speed - value;
+    let newspeed = this.speed - value;
     if (newspeed > 0) {
       this.speed = newspeed;
     }
-    return this.speed;
   }
 
   /*
@@ -95,7 +91,7 @@ class Car {
    * но только в том случае если машина заведена!
    */
   drive(hours) {
-    if ((this.isOn = true)) {
+    if (this.isOn) {
       this.distance = hours * this.speed;
     }
   }

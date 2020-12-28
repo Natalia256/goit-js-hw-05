@@ -17,13 +17,11 @@ class Storage {
   addItem(item) {
     this._items.push(item);
   }
-  removeItem(removeItem) {
-    const newItems = [];
-    for (const item of this._items) {
-      if (item === removeItem) continue;
-      newItems.push(item);
+  removeItem(item) {
+    const index = this._items.indexOf(item);
+    if (index !== -1) {
+      this._items.splice(index, 1);
     }
-    this._items = newItems;
   }
 }
 
